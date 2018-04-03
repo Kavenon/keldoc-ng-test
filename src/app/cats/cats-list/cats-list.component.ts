@@ -1,6 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {Cat} from '../cat.model';
 import {Router} from '@angular/router';
+import {AppState} from '../../app.state';
+import {Store} from '@ngrx/store';
+import {REMOVE_CAT} from '../cats.actions';
 
 @Component({
   selector: 'app-cats-list',
@@ -11,11 +14,11 @@ export class CatsListComponent {
 
   @Input() cats: Cat[];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private store: Store<AppState>) {
   }
 
   deleteCat(cat: Cat): void {
-    // Todo: implement
+    this.store.dispatch({type: REMOVE_CAT, payload: cat.id});
   }
 
   editCat(cat: Cat): void {

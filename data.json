@@ -2,7 +2,7 @@
   "cats": [
     {
       "id": 1,
-      "name": "cattest",
+      "name": "test",
       "age": 1
     }
   ]
