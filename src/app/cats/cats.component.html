@@ -1,3 +1,12 @@
-<h1>Cats homepage</h1>
+<div class="row">
+  <div class="col-auto">
+    <h3>Cats homepage </h3>
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-sm btn-primary" [routerLink]="['new']">Add new cat</button>
+  </div>
+</div>
 
-<app-cats-list [cats]="cats | async"></app-cats-list>
+<div class="mt-4">
+  <app-cats-list [cats]="cats | async"></app-cats-list>
+</div>
