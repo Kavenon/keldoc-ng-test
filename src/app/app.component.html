@@ -6,13 +6,16 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/']">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/cats']">Cats</a>
       </li>
     </ul>
   </div>
 </nav>
 
 <main role="main" class="container mt-4">
-  Todo: app
+  <router-outlet></router-outlet>
 </main>
