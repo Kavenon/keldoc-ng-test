@@ -15,6 +15,7 @@ export class CatsComponent implements OnInit {
   ngOnInit(): void {
     // Todo: replace with ngrx.select statement
     this.cats = of([{
+      id: 1,
       name: 'cat1',
       age: 4,
     }]);

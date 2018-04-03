@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Cat} from '../cat.model';
 
@@ -10,17 +10,22 @@ import {Cat} from '../cat.model';
 export class CatFormComponent implements OnInit {
 
   @Output() onSubmit: EventEmitter<Cat> = new EventEmitter<Cat>();
+  @Input() cat: Cat;
 
   catForm: FormGroup;
 
   constructor(formBuilder: FormBuilder) {
     this.catForm = formBuilder.group({
+      id: [''],
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z -]*')]],
       age: ['', [Validators.required, Validators.min(0), Validators.max(25)]],
     });
   }
 
   ngOnInit() {
+    if (this.cat) {
+      this.catForm.setValue(this.cat);
+    }
   }
 
   submit(): void {
