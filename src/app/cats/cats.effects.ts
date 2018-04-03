@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Observable} from 'rxjs/Observable';
-import {GET_CATS, GET_CATS_ERROR, GET_CATS_SUCCESS} from './cats.actions';
+import {ADD_CAT, ADD_CAT_ERROR, ADD_CAT_SUCCESS, GET_CATS, GET_CATS_ERROR, GET_CATS_SUCCESS} from './cats.actions';
 import {catchError, map, mergeMap} from 'rxjs/operators';
 import {CatsService} from './cats.service';
 import {Cat} from './cat.model';
@@ -20,6 +20,21 @@ export class CatsEffects {
           catchError((error: any) => {
             console.error('Failed fetch cats', error);
             return of({type: GET_CATS_ERROR});
+          })
+        ),
+      )
+    );
+
+  @Effect()
+  addCat$: Observable<any> = this.actions$
+    .pipe(
+      ofType(ADD_CAT),
+      mergeMap((action: any) =>
+        this.catsService.addCat(action.payload).pipe(
+          map((cat: Cat) => ({type: ADD_CAT_SUCCESS, payload: cat})),
+          catchError((error: any) => {
+            console.error('Failed add cats', error);
+            return of({type: ADD_CAT_ERROR});
           })
         ),
       )

@@ -14,4 +14,7 @@ export class CatsService {
     return this.http.get<Cat[]>(environment.api + '/cats');
   }
 
+  addCat(cat: Cat): Observable<Cat> {
+    return this.http.post<Cat>(environment.api + '/cats', cat);
+  }
 }

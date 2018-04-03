@@ -1,5 +1,5 @@
 import {CatsState} from './cats.state';
-import {GET_CATS_SUCCESS} from './cats.actions';
+import {ADD_CAT_SUCCESS, GET_CATS_SUCCESS} from './cats.actions';
 
 const defaultCatsState: CatsState = {
   cats: [],
@@ -11,6 +11,8 @@ export function CatsReducer(state = defaultCatsState, action: any) {
   switch (action.type) {
     case GET_CATS_SUCCESS:
       return {cats: action.payload};
+    case ADD_CAT_SUCCESS:
+      return {cats: [...state.cats, action.payload]};
     default:
       return state;
   }

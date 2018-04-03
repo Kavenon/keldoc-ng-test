@@ -1,1 +1,9 @@
-{"cats":[]}
+{
+  "cats": [
+    {
+      "id": 1,
+      "name": "cattest",
+      "age": 1
+    }
+  ]
+}
