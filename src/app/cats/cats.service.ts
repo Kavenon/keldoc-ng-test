@@ -21,4 +21,8 @@ export class CatsService {
   removeCat(catId: number): Observable<Cat> {
     return this.http.delete<Cat>(environment.api + `/cats/${catId}`);
   }
+
+  editCat(cat: Cat) {
+    return this.http.put<Cat>(environment.api + `/cats/${cat.id}`, cat);
+  }
 }

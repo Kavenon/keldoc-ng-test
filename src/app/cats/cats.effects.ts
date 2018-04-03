@@ -5,6 +5,8 @@ import {
   ADD_CAT,
   ADD_CAT_ERROR,
   ADD_CAT_SUCCESS,
+  EDIT_CAT,
+  EDIT_CAT_SUCCESS,
   GET_CATS,
   GET_CATS_ERROR,
   GET_CATS_SUCCESS,
@@ -59,6 +61,18 @@ export class CatsEffects {
         ),
       )
     );
+
+  @Effect()
+  editCat$: Observable<any> = this.actions$
+    .pipe(
+      ofType(EDIT_CAT),
+      mergeMap((action: any) =>
+        this.catsService.editCat(action.payload).pipe(
+          map(() => ({type: EDIT_CAT_SUCCESS, payload: action.payload})),
+        ),
+      )
+    );
+
 
   constructor(private actions$: Actions, private catsService: CatsService) {
   }

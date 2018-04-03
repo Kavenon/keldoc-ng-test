@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {of} from 'rxjs/observable/of';
 import {Cat} from '../cat.model';
-import {Observable} from 'rxjs/Observable';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AppState} from '../../app.state';
+import {Store} from '@ngrx/store';
+import {EDIT_CAT} from '../cats.actions';
 
 @Component({
   selector: 'app-cat-edit',
@@ -11,20 +12,23 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class CatEditComponent implements OnInit {
 
-  cat: Observable<Cat>;
+  cat: Cat;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private store: Store<AppState>, private router: Router) {
   }
 
   ngOnInit() {
-
-    // Todo: replace with ngrx.select by id call
-    const catId = this.route.snapshot.params.id;
-    this.cat = of({
-      id: 1,
-      name: 'cat1',
-      age: 4,
+    // Todo: This could be replaced with getById selector.
+    this.store.select((state: AppState) => state.cats.cats).subscribe((cats: Cat[]) => {
+      this.cat = cats.find((cat: Cat) => cat.id === +this.route.snapshot.params.id);
     });
+  }
+
+  editCat(cat: Cat): void {
+    this.store.dispatch({type: EDIT_CAT, payload: cat});
+    // Todo: navigation should be called after ADD_CAT_SUCCESS, but for 2h limit I leave it here
+    // Node: with this approach, list after reload may not contain new element.
+    this.router.navigate(['/cats']);
   }
 
 }
