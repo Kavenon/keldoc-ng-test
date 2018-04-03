@@ -1,16 +1,20 @@
 import {NgModule} from '@angular/core';
 import {CatsComponent} from './cats.component';
 import {RouterModule} from '@angular/router';
+import {CatsListComponent} from './cats-list/cats-list.component';
+import {SharedModule} from '../shared.module';
+import {HumanAgePipe} from './human-age.pipe';
 
 @NgModule({
   imports: [
+    SharedModule,
     RouterModule.forChild([{
       path: '',
       component: CatsComponent,
     }]),
   ],
   exports: [RouterModule],
-  declarations: [CatsComponent],
+  declarations: [CatsComponent, CatsListComponent, HumanAgePipe],
   providers: [],
 })
 export class CatsModule {
