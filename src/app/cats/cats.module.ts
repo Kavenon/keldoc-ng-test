@@ -6,6 +6,7 @@ import {SharedModule} from '../shared.module';
 import {HumanAgePipe} from './human-age.pipe';
 import {CatsListItemComponent} from './cats-list/cats-list-item/cats-list-item.component';
 import {CatAddComponent} from './cat-add/cat-add.component';
+import {CatFormComponent} from './cat-form/cat-form.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,7 @@ import {CatAddComponent} from './cat-add/cat-add.component';
     ]),
   ],
   exports: [RouterModule],
-  declarations: [CatsComponent, CatsListComponent, HumanAgePipe, CatsListItemComponent, CatAddComponent],
+  declarations: [CatsComponent, CatsListComponent, HumanAgePipe, CatsListItemComponent, CatAddComponent, CatFormComponent],
   providers: [],
 })
 export class CatsModule {
