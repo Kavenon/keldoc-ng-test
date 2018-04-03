@@ -2,7 +2,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
-import {routes} from './app.routers';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {CatsEffects} from './cats/cats.effects';
+import {CatsReducer} from './cats/cats.reducer';
+import {routes} from './app.routes';
 
 @NgModule({
   declarations: [
@@ -10,7 +14,9 @@ import {routes} from './app.routers';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot({cats: CatsReducer}),
+    EffectsModule.forRoot([CatsEffects])
   ],
   bootstrap: [AppComponent]
 })
