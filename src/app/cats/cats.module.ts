@@ -8,24 +8,12 @@ import {CatsListItemComponent} from './cats-list/cats-list-item/cats-list-item.c
 import {CatAddComponent} from './cat-add/cat-add.component';
 import {CatFormComponent} from './cat-form/cat-form.component';
 import {CatEditComponent} from './cat-edit/cat-edit.component';
+import {catsRoutes} from './cats.routes';
 
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: CatsComponent,
-      },
-      {
-        path: 'new',
-        component: CatAddComponent,
-      },
-      {
-        path: 'edit/:id',
-        component: CatEditComponent,
-      }
-    ]),
+    RouterModule.forChild(catsRoutes),
   ],
   exports: [RouterModule],
   declarations: [CatsComponent, CatsListComponent, HumanAgePipe,
