@@ -1,5 +1,5 @@
-import {Cat} from './cats/cat.model';
+import {CatsState} from './cats/cats.state';
 
 export interface AppState {
-  cats: Cat[];
+  cats: CatsState;
 }

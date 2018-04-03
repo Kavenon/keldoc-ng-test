@@ -9,16 +9,23 @@ import {CatAddComponent} from './cat-add/cat-add.component';
 import {CatFormComponent} from './cat-form/cat-form.component';
 import {CatEditComponent} from './cat-edit/cat-edit.component';
 import {catsRoutes} from './cats.routes';
+import {CatsService} from './cats.service';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreModule} from '@ngrx/store';
+import {CatsEffects} from './cats.effects';
+import {CatsReducer} from './cats.reducer';
 
 @NgModule({
   imports: [
     SharedModule,
     RouterModule.forChild(catsRoutes),
+    StoreModule.forFeature('cats', CatsReducer),
+    EffectsModule.forFeature([CatsEffects])
   ],
   exports: [RouterModule],
   declarations: [CatsComponent, CatsListComponent, HumanAgePipe,
     CatsListItemComponent, CatAddComponent, CatFormComponent, CatEditComponent],
-  providers: [],
+  providers: [CatsService],
 })
 export class CatsModule {
 }

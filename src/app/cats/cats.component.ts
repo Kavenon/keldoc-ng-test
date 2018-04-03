@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Cat} from './cat.model';
 import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
+import {AppState} from '../app.state';
+import {Store} from '@ngrx/store';
+import {GET_CATS} from './cats.actions';
 
 @Component({
   selector: 'app-cats',
@@ -12,12 +14,11 @@ export class CatsComponent implements OnInit {
 
   cats: Observable<Cat[]>;
 
+  constructor(private store: Store<AppState>) {
+  }
+
   ngOnInit(): void {
-    // Todo: replace with ngrx.select statement
-    this.cats = of([{
-      id: 1,
-      name: 'cat1',
-      age: 4,
-    }]);
+    this.store.dispatch({type: GET_CATS});
+    this.cats = this.store.select((state: AppState) => state.cats.cats);
   }
 }
